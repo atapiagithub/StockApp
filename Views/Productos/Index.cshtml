@@ -1,0 +1,38 @@
+﻿@model List<ProductoModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Stock de Productos</h2>
+<br />
+<a asp-area="" asp-controller="Productos" asp-action="Create" class="btn btn-primary">
+    Añadir un nuevo producto
+</a>
+<br />
+<br />
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Descripción</th>
+            <th>Cantidad</th>
+            <th style="width: 120px;" ></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ProductoModel item in Model)
+        {
+            <tr>
+                <td>@item.Codigo</td>
+                <td>@item.Descripcion</td>
+                <td>@item.Cantidad</td>
+                <td>
+                    <a class="btn btn-xs btn-primary" asp-controller="Productos" asp-action="Edit" asp-route-id="@item.IdProducto">Editar</a>
+                    <a class="btn btn-xs btn-danger" asp-controller="Productos" asp-action="Delete" asp-route-id="@item.IdProducto">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
